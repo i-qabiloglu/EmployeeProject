@@ -1,0 +1,20 @@
+server:
+  port: 8087
+
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_CONNECTION_IP:localhost}:${DB_PORT:5432}/ms-employee
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: none
+        format_sql: 'true'
+

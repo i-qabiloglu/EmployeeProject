@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      author: Ibrahim Nazarov
+      id: create employees table
+      changes:
+        - createTable:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: position_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_employee_to_position
+                    references: positions(id)
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(256)
+              - column:
+                  name: gender
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: salary
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
