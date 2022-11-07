@@ -1,2 +1,2 @@
-# EmployeeModule
-Employee Module with employee-ms and notification-sender-ms
+# Employee Project
+* Performs CRUD operations for employees
