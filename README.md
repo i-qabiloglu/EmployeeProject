@@ -6,4 +6,4 @@
 
 * Database Diagram
 
-![databasechangelog.jpg](./assets/databasechangelog.jpg)
+![DatabaseDiagram.png](./assets/DatabaseDiagram.png)
