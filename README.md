@@ -4,6 +4,15 @@
 
 ---
 
-* Database Diagram
+### Technologies
+
+* Spring Boot
+* Rest API
+* Liquibase
+* MapStruct
+
+---
+
+##### Database Diagram
 
 ![DatabaseDiagram.png](./assets/DatabaseDiagram.png)
