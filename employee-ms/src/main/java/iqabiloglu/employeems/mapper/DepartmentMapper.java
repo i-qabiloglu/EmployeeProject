@@ -19,6 +19,7 @@ public class DepartmentMapper {
     public static DepartmentEntity dtoToEntity(DepartmentDto dto) {
         return DepartmentEntity.builder()
                 .name(dto.getName())
+                .isDeleted(false)
                 .build();
     }
 
