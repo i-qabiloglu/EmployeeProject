@@ -14,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "positions")
 public class PositionEntity {
     @Id

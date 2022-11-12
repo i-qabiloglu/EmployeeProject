@@ -24,6 +24,13 @@ public class PositionMapper {
                 .build();
     }
 
+    public static PositionEntity viewToEntity(PositionView view) {
+        return PositionEntity.builder()
+                .name(view.getName())
+                .department(DepartmentMapper.viewToEntity(view.getDepartment()))
+                .build();
+    }
+
     public static Set<PositionView> entitiesToViews(Set<PositionEntity> entities) {
         return entities.stream().map(PositionMapper::entityToView).collect(Collectors.toSet());
     }

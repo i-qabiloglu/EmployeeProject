@@ -14,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "employees")
 public class EmployeeEntity {
 

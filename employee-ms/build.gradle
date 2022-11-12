@@ -30,6 +30,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+	// MapStruct
+	implementation 'org.mapstruct:mapstruct-jdk8:1.5.1.Final'
+	annotationProcessor 'org.mapstruct:mapstruct:1.5.1.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
 }
 
 tasks.named('test') {
