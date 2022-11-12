@@ -2,6 +2,14 @@
 
 * Performs CRUD operations for employees
 
+
+**Technologies**
+
+* Spring Boot
+* Rest API
+* Liquibase
+* MapStruct
+
 ---
 
 * Database Diagram
