@@ -2,8 +2,9 @@
 
 * Performs CRUD operations for employees
 
+---
 
-**Technologies**
+### Technologies
 
 * Spring Boot
 * Rest API
@@ -12,6 +13,6 @@
 
 ---
 
-* Database Diagram
+##### Database Diagram
 
 ![DatabaseDiagram.png](./assets/DatabaseDiagram.png)
