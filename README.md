@@ -8,6 +8,7 @@
 
 * Spring Boot
 * Rest API
+* Spring Data JPA
 * Liquibase
 * MapStruct
 
