@@ -17,4 +17,9 @@ spring:
       hibernate:
         ddl-auto: none
         format_sql: 'true'
-
+logging:
+  level:
+    root: info
+    iqabiloglu.employeems.service: debug
+  file:
+    name: "my.log"
