@@ -4,6 +4,8 @@ import iqabiloglu.employeems.dao.entity.DepartmentEntity;
 import iqabiloglu.employeems.model.dto.DepartmentDto;
 import iqabiloglu.employeems.model.view.DepartmentView;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,7 +32,7 @@ public class DepartmentMapper {
                 .build();
     }
 
-    public static Set<DepartmentView> entitiesToViews(Set<DepartmentEntity> entities) {
-        return entities.stream().map(DepartmentMapper::entityToView).collect(Collectors.toSet());
+    public static List<DepartmentView> entitiesToViews(List<DepartmentEntity> entities) {
+        return entities.stream().map(DepartmentMapper::entityToView).collect(Collectors.toList());
     }
 }

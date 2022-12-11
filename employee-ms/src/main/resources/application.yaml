@@ -11,6 +11,7 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+
     database: POSTGRESQL
     show-sql: true
     properties:

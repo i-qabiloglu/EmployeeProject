@@ -11,9 +11,10 @@
 * Spring Data JPA
 * Liquibase
 * MapStruct
+* Logging (Slf4j)
 
 ---
 
-##### Database Diagram
+#### Database Diagram
 
 ![DatabaseDiagram.png](./assets/DatabaseDiagram.png)
