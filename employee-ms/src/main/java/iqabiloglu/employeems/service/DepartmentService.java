@@ -2,8 +2,10 @@ package iqabiloglu.employeems.service;
 
 import iqabiloglu.employeems.model.dto.DepartmentDto;
 import iqabiloglu.employeems.model.view.DepartmentView;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface DepartmentService {
 
