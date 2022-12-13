@@ -29,7 +29,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<DepartmentView> getList() {
         log.info("DepartmentServiceImpl.getList.start");
-        return DepartmentMapper.entitiesToViews(repository.findAllDepartments());
+        var departmentList = repository.findAllDepartments();
+        if (departmentList.isEmpty()) {
+            throw new NotFoundException(DEPARTMENT_NOT_FOUND_CODE, DEPARTMENTS_NOT_FOUND_MESSAGE);
+        }
+        return DepartmentMapper.entitiesToViews(departmentList);
     }
 
     @Override
@@ -57,6 +61,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         log.info("DepartmentServiceImpl.update.start id: {}", id);
         var department = fetchIfExist(id);
         department.setName(dto.getName());
+        repository.save(department);
         log.info("DepartmentServiceImpl.update.end id: {}", id);
         return DepartmentMapper.entityToView(department);
     }

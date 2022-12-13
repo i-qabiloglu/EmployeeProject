@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -20,7 +21,7 @@ import java.util.List;
 import static iqabiloglu.employeems.model.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_CODE;
 import static iqabiloglu.employeems.model.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_MESSAGE;
 
-@RestController
+@RestControllerAdvice
 @Slf4j
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
@@ -55,8 +56,8 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
         ex.getBindingResult()
                 .getFieldErrors()
-                .forEach(e -> errors.add(new ExceptionView(e.getField()
-                        .toUpperCase() + "_NOT_VALID", e.getDefaultMessage())));
+                .forEach(err -> errors.add(new ExceptionView(err.getField()
+                        .toUpperCase() + "_NOT_VALID", err.getDefaultMessage())));
         return ResponseEntity.status(status)
                 .body(errors);
 
