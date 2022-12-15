@@ -9,9 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PositionDto {
 
-    @NotBlank(message = "Position name can't be empty and not null")
+    @NotBlank(message = "Position name can't be empty and null")
     private String name;
 
-    @NotNull(message = "Department must not be null")
-    private DepartmentView department;
 }
