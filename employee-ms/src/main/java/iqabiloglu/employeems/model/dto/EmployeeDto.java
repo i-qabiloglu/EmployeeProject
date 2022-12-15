@@ -40,6 +40,5 @@ public class EmployeeDto {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private final Double salary;
 
-    @NotNull(message = "Position must not be null")
-    private final PositionView position;
+
 }

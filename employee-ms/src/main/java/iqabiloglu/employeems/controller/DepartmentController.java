@@ -2,7 +2,7 @@ package iqabiloglu.employeems.controller;
 
 import iqabiloglu.employeems.model.dto.DepartmentDto;
 import iqabiloglu.employeems.model.view.DepartmentView;
-import iqabiloglu.employeems.service.impl.DepartmentServiceImpl;
+import iqabiloglu.employeems.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartmentController {
 
-    private final DepartmentServiceImpl service;
+    private final DepartmentService service;
 
     @GetMapping
     public List<DepartmentView> getList() {
