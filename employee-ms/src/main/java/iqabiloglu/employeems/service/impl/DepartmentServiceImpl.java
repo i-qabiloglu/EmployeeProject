@@ -2,14 +2,15 @@ package iqabiloglu.employeems.service.impl;
 
 import iqabiloglu.employeems.dao.entity.DepartmentEntity;
 import iqabiloglu.employeems.dao.repository.DepartmentRepository;
+import iqabiloglu.employeems.dao.repository.PositionRepository;
 import iqabiloglu.employeems.mapper.DepartmentMapper;
 import iqabiloglu.employeems.model.dto.DepartmentDto;
 import iqabiloglu.employeems.model.exception.AlreadyExistException;
+import iqabiloglu.employeems.model.exception.NotEmptyException;
 import iqabiloglu.employeems.model.exception.NotFoundException;
 import iqabiloglu.employeems.model.view.DepartmentView;
 import iqabiloglu.employeems.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +22,11 @@ import static iqabiloglu.employeems.model.constant.ExceptionConstants.*;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository repository;
+    private final PositionRepository positionRepository;
 
-    public DepartmentServiceImpl(DepartmentRepository repository) {
+    public DepartmentServiceImpl(DepartmentRepository repository, PositionRepository positionRepository) {
         this.repository = repository;
+        this.positionRepository = positionRepository;
     }
 
 
@@ -71,6 +74,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void delete(Long id) {
         log.info("DepartmentServiceImpl.delete.start id: {}", id);
         var department = fetchIfExist(id);
+        if (positionRepository.findAllByIsDeletedFalseAndDepartment_Id(id).isEmpty()) {
+            log.error("DepartmentServiceImpl.delete.error id: {}", id);
+            throw new NotEmptyException(DEPARTMENT_NOT_EMPTY_CODE, String.format(DEPARTMENT_NOT_EMPTY_MESSAGE, id));
+        }
         department.setIsDeleted(true);
         repository.save(department);
         log.info("DepartmentServiceImpl.delete.end id: {}", id);

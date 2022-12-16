@@ -17,6 +17,8 @@ public final class ExceptionConstants {
     public static final String EMPLOYEE_ALREADY_EXIST_MESSAGE = "Employee with this email: %s already exist";
     public static final String DEPARTMENT_ALREADY_EXIST_CODE = "DEPARTMENT_ALREADY_EXIST";
     public static final String DEPARTMENT_ALREADY_EXIST_MESSAGE = "Department with this name: %s already exist";
+    public static final String DEPARTMENT_NOT_EMPTY_CODE = "DEPARTMENT_NOT_EMPTY";
+    public static final String DEPARTMENT_NOT_EMPTY_MESSAGE = "Department with this id: %s not empty";
     public static final String POSITION_ALREADY_EXIST_CODE = "POSITION_ALREADY_EXIST";
     public static final String POSITION_ALREADY_EXIST_MESSAGE = "Position with this name: %s already exist";
 }

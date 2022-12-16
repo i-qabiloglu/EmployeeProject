@@ -22,15 +22,16 @@ public class PositionController {
         return service.getList();
     }
 
-    @GetMapping("/{department_id}")
+    @GetMapping("/department/{department_id}")
     public List<PositionView> getListByDepartment(@PathVariable("department_id") Long departmentId) {
         return service.getListByDepartment(departmentId);
     }
 
-    @GetMapping("/{department_id}/{id}")
-    public PositionView get(@PathVariable("department_id") Long departmentId, @PathVariable("id") Long id) {
-        return service.get(departmentId, id);
+    @GetMapping("/{id}")
+    public PositionView get(@PathVariable("id") Long id) {
+        return service.get(id);
     }
+
 
     @PostMapping("/{department_id}")
     @ResponseStatus(HttpStatus.CREATED)

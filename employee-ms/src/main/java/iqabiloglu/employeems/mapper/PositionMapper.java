@@ -4,6 +4,7 @@ import iqabiloglu.employeems.dao.entity.PositionEntity;
 import iqabiloglu.employeems.model.dto.PositionDto;
 import iqabiloglu.employeems.model.view.PositionView;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,15 +25,15 @@ public class PositionMapper {
                 .build();
     }
 
-    public static PositionEntity viewToEntity(PositionView view) {
-        return PositionEntity.builder()
-                .name(view.getName())
-                .department(DepartmentMapper.viewToEntity(view.getDepartment()))
-                .build();
-    }
+//    public static PositionEntity viewToEntity(PositionView view) {
+//        return PositionEntity.builder()
+//                .name(view.getName())
+//                .department(DepartmentMapper.viewToEntity(view.getDepartment()))
+//                .build();
+//    }
 
-    public static Set<PositionView> entitiesToViews(Set<PositionEntity> entities) {
-        return entities.stream().map(PositionMapper::entityToView).collect(Collectors.toSet());
+    public static List<PositionView> entitiesToViews(List<PositionEntity> entities) {
+        return entities.stream().map(PositionMapper::entityToView).collect(Collectors.toList());
     }
 
 }
