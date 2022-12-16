@@ -31,13 +31,12 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public List<PositionView> getListByDepartment(Long departmentId) {
-
         return PositionMapper.entitiesToViews(repository.findAllByIsDeletedFalseAndDepartment_Id(departmentId));
     }
 
     @Override
-    public PositionView get(Long departmentId, Long id) {
-        return null;
+    public PositionView get(Long id) {
+        return PositionMapper.entityToView(fetchIfExist(id));
     }
 
     @Override

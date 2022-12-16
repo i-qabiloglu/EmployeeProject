@@ -12,7 +12,9 @@ public interface PositionService {
 
     List<PositionView> getListByDepartment(Long departmentId);
 
-    PositionView get(Long departmentId, Long id);
+    PositionView get(Long id);
+
+    PositionView getByDepartment(Long departmentId, Long id);
 
     void create(Long departmentId, PositionDto dto);
 
