@@ -19,4 +19,5 @@ public interface PositionRepository extends JpaRepository<PositionEntity, Long> 
     Optional<PositionEntity> findByIdAndIsDeletedFalse(Long id);
 
 
+
 }

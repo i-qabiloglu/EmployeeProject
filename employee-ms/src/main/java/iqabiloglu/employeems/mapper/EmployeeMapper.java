@@ -23,6 +23,7 @@ public abstract class EmployeeMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "isDeleted", constant = "false")
+    @Mapping(target = "position",ignore = true)
     abstract EmployeeEntity dtoToEntity(EmployeeDto dto);
 
     abstract Set<EmployeeView> entitiesToViews(Set<EmployeeEntity> entities);

@@ -25,12 +25,6 @@ public class DepartmentMapper {
                 .build();
     }
 
-    public static DepartmentEntity viewToEntity(DepartmentView view) {
-        return DepartmentEntity.builder()
-                .name(view.getName())
-                .isDeleted(false)
-                .build();
-    }
 
     public static List<DepartmentView> entitiesToViews(List<DepartmentEntity> entities) {
         return entities.stream().map(DepartmentMapper::entityToView).collect(Collectors.toList());
