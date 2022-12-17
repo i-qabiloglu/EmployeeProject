@@ -27,12 +27,24 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public List<PositionView> getList() {
-        return PositionMapper.entitiesToViews(repository.findAll());
+        log.info("PositionServiceImpl.getList.start");
+        var positionList = repository.findAll();
+        if (positionList.isEmpty()) {
+            log.error("PositionServiceImpl.getList.error");
+            throw new NotFoundException(POSITION_NOT_FOUND_CODE, POSITIONS_NOT_FOUND_MESSAGE);
+        }
+        return PositionMapper.entitiesToViews(positionList);
     }
 
     @Override
     public List<PositionView> getListByDepartment(Long departmentId) {
-        return PositionMapper.entitiesToViews(repository.findAllByIsDeletedFalseAndDepartment_Id(departmentId));
+        log.info("PositionServiceImpl.getListByDepartment.start");
+        var positionList = repository.findAllByIsDeletedFalseAndDepartment_Id(departmentId);
+        if (positionList.isEmpty()) {
+            log.error("PositionServiceImpl.getListByDepartment.error departmentId: {}", departmentId);
+            throw new NotFoundException(POSITION_NOT_FOUND_CODE, String.format(POSITIONS_BY_DEPARTMET_NOT_FOUND_MESSAGE, departmentId));
+        }
+        return PositionMapper.entitiesToViews(positionList);
     }
 
     @Override

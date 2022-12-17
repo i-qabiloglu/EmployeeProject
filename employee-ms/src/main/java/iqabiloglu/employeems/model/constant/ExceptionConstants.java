@@ -10,9 +10,11 @@ public final class ExceptionConstants {
     public static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee with id: %s not found";
     public static final String DEPARTMENT_NOT_FOUND_CODE = "DEPARTMENT_NOT_FOUND";
     public static final String DEPARTMENT_NOT_FOUND_MESSAGE = "Department with id: %s not found";
-    public static final String DEPARTMENTS_NOT_FOUND_MESSAGE = "There are not found any department";
+    public static final String DEPARTMENTS_NOT_FOUND_MESSAGE = "There is not any department";
     public static final String POSITION_NOT_FOUND_CODE = "POSITION_NOT_FOUND";
     public static final String POSITION_NOT_FOUND_MESSAGE = "Position with id: %s not found";
+    public static final String POSITIONS_NOT_FOUND_MESSAGE = "There is not any position";
+    public static final String POSITIONS_BY_DEPARTMET_NOT_FOUND_MESSAGE = "There is not any position with departmentId: %s";
     public static final String EMPLOYEE_ALREADY_EXIST_CODE = "EMPLOYEE_ALREADY_EXIST";
     public static final String EMPLOYEE_ALREADY_EXIST_MESSAGE = "Employee with this email: %s already exist";
     public static final String DEPARTMENT_ALREADY_EXIST_CODE = "DEPARTMENT_ALREADY_EXIST";
