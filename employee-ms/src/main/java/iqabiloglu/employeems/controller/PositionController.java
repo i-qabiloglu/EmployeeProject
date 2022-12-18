@@ -32,16 +32,16 @@ public class PositionController {
         return service.get(id);
     }
 
-    @PostMapping("/{department_id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@PathVariable("department_id") Long departmentId, @Valid @RequestBody PositionDto dto) {
-        service.create(departmentId, dto);
+    public void create(@Valid @RequestBody PositionDto dto) {
+        service.create(dto);
     }
 
-    @PutMapping("/{department_id}/{id}/")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PositionView update(@PathVariable("department_id") Long departmentId, @PathVariable("id") Long id, @Valid @RequestBody PositionDto dto) {
-        return service.update(departmentId, id, dto);
+    public PositionView update(@PathVariable("id") Long id, @Valid @RequestBody PositionDto dto) {
+        return service.update(id, dto);
     }
 
     @DeleteMapping("/{id}")

@@ -14,9 +14,9 @@ public interface PositionService {
 
     PositionView get(Long id);
 
-    void create(Long departmentId, PositionDto dto);
+    void create(PositionDto dto);
 
-    PositionView update(Long departmentId, Long id, PositionDto dto);
+    PositionView update(Long id, PositionDto dto);
 
     void delete(Long id);
 }

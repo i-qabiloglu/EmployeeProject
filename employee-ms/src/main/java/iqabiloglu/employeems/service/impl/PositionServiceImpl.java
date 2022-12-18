@@ -53,9 +53,9 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public void create(Long departmentId, PositionDto dto) {
+    public void create( PositionDto dto) {
         log.info("PositionServiceImpl.create.start");
-        var department = departmentService.fetchIfExist(departmentId);
+        var department = departmentService.fetchIfExist(dto.getDepartmentId());
         var positionList = repository.findAll();
         boolean positionExist = positionList.stream().anyMatch(position -> position.getName().equals(dto.getName()));
         if (positionExist) {
@@ -70,8 +70,15 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public PositionView update(Long departmentId, Long id, PositionDto dto) {
-        return null;
+    public PositionView update(Long id, PositionDto dto) {
+        log.info("PositionServiceImpl.update.start");
+        var department = departmentService.fetchIfExist(dto.getDepartmentId());
+        var position = fetchIfExist(id);
+        position.setName(dto.getName());
+        position.setDepartment(department);
+        repository.save(position);
+        log.info("PositionServiceImpl.update.end");
+        return PositionMapper.entityToView(position);
     }
 
     @Override
