@@ -66,7 +66,6 @@ public class PositionServiceImpl implements PositionService {
             throw new AlreadyExistException(POSITION_ALREADY_EXIST_CODE, String.format(POSITION_ALREADY_EXIST_MESSAGE, dto.getName()));
         }
         var newPosition = PositionMapper.dtoToEntity(dto);
-        newPosition.setIsDeleted(false);
         newPosition.setDepartment(department);
         repository.save(newPosition);
         log.info("PositionServiceImpl.create.end");

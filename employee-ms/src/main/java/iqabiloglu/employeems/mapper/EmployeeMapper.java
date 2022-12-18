@@ -17,14 +17,14 @@ public abstract class EmployeeMapper {
 
     public static final EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
-    abstract EmployeeView entityToView(EmployeeEntity entity);
+    public abstract EmployeeView entityToView(EmployeeEntity entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "isDeleted", constant = "false")
-    @Mapping(target = "position",ignore = true)
-    abstract EmployeeEntity dtoToEntity(EmployeeDto dto);
+    @Mapping(target = "position", ignore = true)
+    public abstract EmployeeEntity dtoToEntity(EmployeeDto dto);
 
-    abstract Set<EmployeeView> entitiesToViews(Set<EmployeeEntity> entities);
+    public abstract Set<EmployeeView> entitiesToViews(Set<EmployeeEntity> entities);
 }

@@ -1,19 +1,14 @@
 package iqabiloglu.employeems.model.dto;
 
-import iqabiloglu.employeems.model.view.PositionView;
 import lombok.Data;
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
 public class EmployeeDto {
 
-    @NotNull(message = "First name can't be null")
     @NotBlank(message = "First name must contain at least one character")
     private final String firstName;
 
@@ -24,13 +19,14 @@ public class EmployeeDto {
     private final String gender;
 
     @NotNull(message = "Birth date can't be null")
+    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = " must be 2022-12-24")
     private final LocalDate birthDate;
 
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "must be test@email.aaa")
     private final String email;
 
     @NotBlank(message = "Phone number must not be null and must contain at least one non-whitespace character")
-    @Pattern(regexp = "^[0-9]{5}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$")
+    @Pattern(regexp = "^[0-9]{5}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$", message = "must be 00000-00-000-00-00")
     private final String phoneNumber;
 
     @NotBlank(message = "Address must not be null and must contain at least one non-whitespace character")
@@ -40,5 +36,7 @@ public class EmployeeDto {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private final Double salary;
 
-
+    @NotNull
+    @Min(0L)
+    private Long positionId;
 }
