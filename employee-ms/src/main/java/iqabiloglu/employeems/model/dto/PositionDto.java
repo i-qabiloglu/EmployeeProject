@@ -1,8 +1,8 @@
 package iqabiloglu.employeems.model.dto;
 
-import iqabiloglu.employeems.model.view.DepartmentView;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -11,5 +11,9 @@ public class PositionDto {
 
     @NotBlank(message = "Position name can't be empty and null")
     private String name;
+
+    @Min(0)
+    @NotNull
+    private Long departmentId;
 
 }
