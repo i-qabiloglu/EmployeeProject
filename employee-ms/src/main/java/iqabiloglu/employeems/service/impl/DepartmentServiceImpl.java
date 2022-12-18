@@ -74,7 +74,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void delete(Long id) {
         log.info("DepartmentServiceImpl.delete.start id: {}", id);
         var department = fetchIfExist(id);
-        if (positionRepository.findAllByIsDeletedFalseAndDepartment_Id(id).isEmpty()) {
+        var positionList = positionRepository.findAllByIsDeletedFalseAndDepartment_Id(id);
+        if (!positionList.isEmpty()) {
             log.error("DepartmentServiceImpl.delete.error id: {}", id);
             throw new NotEmptyException(DEPARTMENT_NOT_EMPTY_CODE, String.format(DEPARTMENT_NOT_EMPTY_MESSAGE, id));
         }

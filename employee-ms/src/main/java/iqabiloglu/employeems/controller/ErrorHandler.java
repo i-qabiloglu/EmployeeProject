@@ -1,6 +1,7 @@
 package iqabiloglu.employeems.controller;
 
 import iqabiloglu.employeems.model.exception.AlreadyExistException;
+import iqabiloglu.employeems.model.exception.NotEmptyException;
 import iqabiloglu.employeems.model.exception.NotFoundException;
 import iqabiloglu.employeems.model.view.ExceptionView;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -43,6 +43,13 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionView handle(AlreadyExistException ex) {
         log.info("AlreadyExistException: ", ex);
+        return new ExceptionView(ex.getCode(), ex.getMessage());
+    }
+
+    @ExceptionHandler(NotEmptyException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionView handle(NotEmptyException ex) {
+        log.info("NotEmptyException: ", ex);
         return new ExceptionView(ex.getCode(), ex.getMessage());
     }
 

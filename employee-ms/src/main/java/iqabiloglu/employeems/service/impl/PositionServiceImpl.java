@@ -1,10 +1,12 @@
 package iqabiloglu.employeems.service.impl;
 
 import iqabiloglu.employeems.dao.entity.PositionEntity;
+import iqabiloglu.employeems.dao.repository.EmployeeRepository;
 import iqabiloglu.employeems.dao.repository.PositionRepository;
 import iqabiloglu.employeems.mapper.PositionMapper;
 import iqabiloglu.employeems.model.dto.PositionDto;
 import iqabiloglu.employeems.model.exception.AlreadyExistException;
+import iqabiloglu.employeems.model.exception.NotEmptyException;
 import iqabiloglu.employeems.model.exception.NotFoundException;
 import iqabiloglu.employeems.model.view.PositionView;
 import iqabiloglu.employeems.service.PositionService;
@@ -23,6 +25,7 @@ public class PositionServiceImpl implements PositionService {
 
     private final PositionRepository repository;
     private final DepartmentServiceImpl departmentService;
+    private final EmployeeRepository employeeRepository;
 
 
     @Override
@@ -53,7 +56,7 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public void create( PositionDto dto) {
+    public void create(PositionDto dto) {
         log.info("PositionServiceImpl.create.start");
         var department = departmentService.fetchIfExist(dto.getDepartmentId());
         var positionList = repository.findAll();
@@ -71,19 +74,28 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public PositionView update(Long id, PositionDto dto) {
-        log.info("PositionServiceImpl.update.start");
+        log.info("PositionServiceImpl.update.start with id: {}", id);
         var department = departmentService.fetchIfExist(dto.getDepartmentId());
         var position = fetchIfExist(id);
         position.setName(dto.getName());
         position.setDepartment(department);
         repository.save(position);
-        log.info("PositionServiceImpl.update.end");
+        log.info("PositionServiceImpl.update.end with id: {}", id);
         return PositionMapper.entityToView(position);
     }
 
     @Override
     public void delete(Long id) {
-
+        log.info("PositionServiceImpl.delete.start with id: {}", id);
+        var position = fetchIfExist(id);
+        var employeeList = employeeRepository.findAllByPosition_IdAndIsDeletedFalse(id);
+        if (!employeeList.isEmpty()) {
+            log.error("PositionServiceImpl.delete.error with id: {}", id);
+            throw new NotEmptyException(POSITION_NOT_EMPTY_CODE, String.format(POSITION_NOT_EMPTY_MESSAGE, id));
+        }
+        position.setIsDeleted(true);
+        repository.save(position);
+        log.info("PositionServiceImpl.delete.end with id: {}", id);
     }
 
     PositionEntity fetchIfExist(Long id) {
