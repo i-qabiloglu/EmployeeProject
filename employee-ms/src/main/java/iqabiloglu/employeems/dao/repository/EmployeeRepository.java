@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
 
     @Query(nativeQuery = true, value = "select * from employees where is_deleted =false")
-    List<EmployeeEntity> findAllEmployees();
+    List<EmployeeEntity> findAll();
 
     List<EmployeeEntity> findAllByPosition_IdAndIsDeletedFalse(Long positionId);
 

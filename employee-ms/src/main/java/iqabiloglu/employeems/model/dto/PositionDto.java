@@ -12,7 +12,7 @@ public class PositionDto {
     @NotBlank(message = "Position name can't be empty and null")
     private String name;
 
-    @Min(0)
+    @Min(0L)
     @NotNull
     private Long departmentId;
 
