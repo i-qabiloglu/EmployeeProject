@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static iqabiloglu.employeems.model.constant.ExceptionConstants.*;
+import static iqabiloglu.employeems.util.constant.ExceptionConstants.*;
 
 @Service
 @Slf4j

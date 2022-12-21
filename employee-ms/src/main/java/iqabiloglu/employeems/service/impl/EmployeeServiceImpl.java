@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static iqabiloglu.employeems.model.constant.ExceptionConstants.*;
+import static iqabiloglu.employeems.util.constant.ExceptionConstants.*;
 
 @Service
 @Slf4j
@@ -78,6 +78,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(Long id) {
 
+        log.info("EmployeeServiceImpl.delete.start with id: {}", id);
+        var employee = fetchIfExist(id);
+        employee.setIsDeleted(true);
+        repository.save(employee);
+        log.info("EmployeeServiceImpl.delete.end with id: {}", id);
     }
 
     public EmployeeEntity fetchIfExist(Long id) {
