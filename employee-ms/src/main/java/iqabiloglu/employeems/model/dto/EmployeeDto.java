@@ -5,10 +5,12 @@ import iqabiloglu.employeems.util.constant.Constants;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -44,4 +46,12 @@ public class EmployeeDto {
     @NotNull
     @Min(0L)
     Long positionId;
+
+    @AssertTrue(message = "Employee must be over 17 years old")
+    boolean isAgeValid() {
+        boolean isValid = Period.between(birthDate, LocalDate.now()).getYears() >= 18;
+        return ObjectUtils.isNotEmpty(birthDate) && isValid;
+    }
+
+
 }
