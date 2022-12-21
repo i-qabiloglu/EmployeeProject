@@ -2,8 +2,10 @@ package iqabiloglu.employeems.model.view;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import iqabiloglu.employeems.util.constant.Constants;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.Email;
@@ -11,41 +13,41 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeView {
 
-    private Long id;
+     Long id;
 
     @NotBlank
-    private String firstName;
+    String firstName;
 
     @NotBlank
-    private String lastName;
+     String lastName;
 
     @NotBlank
-    private String gender;
+     String gender;
 
     @NotNull
     @JsonFormat(pattern = Constants.DATE_FORMAT)
-    private LocalDate birthDate;
+     LocalDate birthDate;
 
     @Email(regexp ="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}" )
-    private String email;
+     String email;
 
     @NotBlank
     @Pattern(regexp = "^[0-9]{5}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$")
-    private String phoneNumber;
+     String phoneNumber;
 
     @NotBlank
-    private String address;
+     String address;
 
     @NotNull
     @NumberFormat
-    private Double salary;
+     Double salary;
 
     @NotNull
-    private PositionView position;
+    PositionView position;
 }

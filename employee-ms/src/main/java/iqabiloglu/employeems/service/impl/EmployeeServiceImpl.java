@@ -26,6 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeView> getList() {
+
         return null;
     }
 
@@ -36,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeView get(Long id) {
-        return null;
+
+        return EmployeeMapper.INSTANCE.entityToView(fetchIfExist(id));
     }
 
     @Override
