@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingInheritanceStrategy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
 import java.util.Set;
 
 @Mapper(uses = {DepartmentMapper.class, PositionMapper.class})
@@ -26,5 +27,5 @@ public abstract class EmployeeMapper {
     @Mapping(target = "position", ignore = true)
     public abstract EmployeeEntity dtoToEntity(EmployeeDto dto);
 
-    public abstract Set<EmployeeView> entitiesToViews(Set<EmployeeEntity> entities);
+    public abstract List<EmployeeView> entitiesToViews(List<EmployeeEntity> entities);
 }

@@ -33,7 +33,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<DepartmentView> getList() {
         log.info("DepartmentServiceImpl.getList.start");
-        var departmentList = repository.findAllDepartments();
+        var departmentList = repository.findAllByIsDeletedFalse();
         if (departmentList.isEmpty()) {
             throw new NotFoundException(DEPARTMENT_NOT_FOUND_CODE, DEPARTMENTS_NOT_FOUND_MESSAGE);
         }
@@ -49,7 +49,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void create(DepartmentDto dto) {
         log.info("DepartmentServiceImpl.create.start");
-        var departmentList = repository.findAllDepartments();
+        var departmentList = repository.findAllByIsDeletedFalse();
         boolean departmentExist = departmentList.stream().anyMatch(department -> department.getName().equals(dto.getName()));
         if (departmentExist) {
             log.error("DepartmentServiceImpl.create.error with name: {}", dto.getName());

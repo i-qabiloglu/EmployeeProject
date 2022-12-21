@@ -27,12 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeView> getList() {
 
-        return null;
+        return EmployeeMapper.INSTANCE.entitiesToViews(repository.findAll());
     }
 
     @Override
     public List<EmployeeView> getListByPosition(Long positionId) {
-        return null;
+
+        return EmployeeMapper.INSTANCE.entitiesToViews(repository.findAllByPosition_IdAndIsDeletedFalse(positionId));
     }
 
     @Override
