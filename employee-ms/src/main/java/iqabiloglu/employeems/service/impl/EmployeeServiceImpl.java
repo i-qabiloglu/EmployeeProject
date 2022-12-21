@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static iqabiloglu.employeems.model.constant.ExceptionConstants.*;
+import static iqabiloglu.employeems.util.constant.ExceptionConstants.*;
 
 @Service
 @Slf4j
@@ -26,6 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeView> getList() {
+
         return null;
     }
 
@@ -36,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeView get(Long id) {
-        return null;
+
+        return EmployeeMapper.INSTANCE.entityToView(fetchIfExist(id));
     }
 
     @Override
@@ -57,12 +59,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeView update(Long id, EmployeeDto dto) {
-        return null;
+
+        log.info("EmployeeServiceImpl.update.start with id: {}", id);
+        var employee = fetchIfExist(id);
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
+        employee.setGender(dto.getGender());
+        employee.setBirthDate(dto.getBirthDate());
+        employee.setEmail(dto.getEmail());
+        employee.setPhoneNumber(dto.getPhoneNumber());
+        employee.setAddress(dto.getAddress());
+        employee.setSalary(dto.getSalary());
+        employee.setPosition(positionService.fetchIfExist(dto.getPositionId()));
+        repository.save(employee);
+        log.info("EmployeeServiceImpl.update.end with id: {}", id);
+
+        return EmployeeMapper.INSTANCE.entityToView(employee);
     }
 
     @Override
     public void delete(Long id) {
 
+        log.info("EmployeeServiceImpl.delete.start with id: {}", id);
+        var employee = fetchIfExist(id);
+        employee.setIsDeleted(true);
+        repository.save(employee);
+        log.info("EmployeeServiceImpl.delete.end with id: {}", id);
     }
 
     public EmployeeEntity fetchIfExist(Long id) {

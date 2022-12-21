@@ -1,42 +1,47 @@
 package iqabiloglu.employeems.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import iqabiloglu.employeems.util.constant.Constants;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeDto {
 
-    @NotBlank(message = "First name must contain at least one character")
-    private final String firstName;
+    @NotBlank
+    String firstName;
 
-    @NotBlank(message = "Last name name must contain at least one character")
-    private final String lastName;
+    @NotBlank
+    String lastName;
 
-    @NotBlank(message = "Gender must not be null and must contain at least one non-whitespace character")
-    private final String gender;
+    @NotBlank
+    String gender;
 
-    @NotNull(message = "Birth date can't be null")
-    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = " must be 2022-12-24")
-    private final LocalDate birthDate;
+    @NotNull
+    @JsonFormat(pattern = Constants.DATE_FORMAT)
+    LocalDate birthDate;
 
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "must be test@email.aaa")
-    private final String email;
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
+    String email;
 
-    @NotBlank(message = "Phone number must not be null and must contain at least one non-whitespace character")
-    @Pattern(regexp = "^[0-9]{5}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$", message = "must be 00000-00-000-00-00")
-    private final String phoneNumber;
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{5}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$")
+    String phoneNumber;
 
-    @NotBlank(message = "Address must not be null and must contain at least one non-whitespace character")
-    private final String address;
+    @NotBlank
+    String address;
 
-    @NotNull(message = "Salary can't be null")
-    @NumberFormat(style = NumberFormat.Style.NUMBER)
-    private final Double salary;
+    @NotNull
+    @NumberFormat
+    Double salary;
 
     @NotNull
     @Min(0L)
-    private Long positionId;
+    Long positionId;
 }

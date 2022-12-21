@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.List;
 
-import static iqabiloglu.employeems.model.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_CODE;
-import static iqabiloglu.employeems.model.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_MESSAGE;
+import static iqabiloglu.employeems.util.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_CODE;
+import static iqabiloglu.employeems.util.constant.ExceptionConstants.UNEXPECTED_EXCEPTION_MESSAGE;
 
 @RestControllerAdvice
 @Slf4j

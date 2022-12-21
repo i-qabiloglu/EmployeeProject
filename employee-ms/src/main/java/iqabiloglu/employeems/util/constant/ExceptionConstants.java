@@ -1,11 +1,13 @@
-package iqabiloglu.employeems.model.constant;
+package iqabiloglu.employeems.util.constant;
 
-public final class ExceptionConstants {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class ExceptionConstants {
 
     public static final String UNEXPECTED_EXCEPTION_CODE = "UNEXPECTED EXCEPTION";
     public static final String UNEXPECTED_EXCEPTION_MESSAGE = "Unexpected exception occured";
-    public static final String VALIDATION_EXCEPTION_CODE = "VALIDATION_EXCEPTION";
-    public static final String VALIDATION_EXCEPTION_MESSAGE = "One or more required fields in the request are invalid";
 
     public static final String DEPARTMENT_NOT_FOUND_CODE = "DEPARTMENT_NOT_FOUND";
     public static final String DEPARTMENT_NOT_FOUND_MESSAGE = "Department with id: %s not found";
