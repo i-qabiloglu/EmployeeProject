@@ -19,7 +19,6 @@ public class EmployeeDto {
     private final String gender;
 
     @NotNull(message = "Birth date can't be null")
-    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = " must be 2022-12-24")
     private final LocalDate birthDate;
 
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "must be test@email.aaa")

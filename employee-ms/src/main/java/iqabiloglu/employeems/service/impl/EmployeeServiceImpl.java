@@ -57,7 +57,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeView update(Long id, EmployeeDto dto) {
-        return null;
+
+        log.info("EmployeeServiceImpl.update.start with id: {}", id);
+        var employee = fetchIfExist(id);
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
+        employee.setGender(dto.getGender());
+        employee.setBirthDate(dto.getBirthDate());
+        employee.setEmail(dto.getEmail());
+        employee.setPhoneNumber(dto.getPhoneNumber());
+        employee.setAddress(dto.getAddress());
+        employee.setSalary(dto.getSalary());
+        employee.setPosition(positionService.fetchIfExist(dto.getPositionId()));
+        repository.save(employee);
+        log.info("EmployeeServiceImpl.update.end with id: {}", id);
+
+        return EmployeeMapper.INSTANCE.entityToView(employee);
     }
 
     @Override
