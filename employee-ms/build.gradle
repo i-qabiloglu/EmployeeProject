@@ -23,18 +23,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.liquibase:liquibase-core:4.17.2'
+	implementation 'org.liquibase:liquibase-core:4.18.0'
 
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	runtimeOnly 'org.postgresql:postgresql:42.5.1'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test:2.4.7'
 
 	// MapStruct
-	implementation 'org.mapstruct:mapstruct-jdk8:1.5.1.Final'
-	annotationProcessor 'org.mapstruct:mapstruct:1.5.1.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
+	implementation 'org.mapstruct:mapstruct-jdk8:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 }
 
 tasks.named('test') {

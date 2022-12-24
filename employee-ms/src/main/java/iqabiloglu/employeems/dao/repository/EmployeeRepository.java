@@ -2,14 +2,16 @@ package iqabiloglu.employeems.dao.repository;
 
 import iqabiloglu.employeems.dao.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long>, JpaSpecificationExecutor<EmployeeEntity> {
 
     @Query(nativeQuery = true, value = "select * from employees where is_deleted =false")
     List<EmployeeEntity> findAll();
@@ -17,4 +19,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
     List<EmployeeEntity> findAllByPosition_IdAndIsDeletedFalse(Long positionId);
 
     Optional<EmployeeEntity> findByIdAndIsDeletedFalse(Long id);
+
+
 }

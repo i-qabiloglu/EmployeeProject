@@ -1,6 +1,7 @@
 package iqabiloglu.employeems.dao.entity;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,28 +17,29 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "departments")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class DepartmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String name;
+    String name;
 
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<PositionEntity> positions;
+    List<PositionEntity> positions;
 
     @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    Boolean isDeleted;
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    LocalDateTime updatedAt;
 
     @Override
     public boolean equals(Object o) {

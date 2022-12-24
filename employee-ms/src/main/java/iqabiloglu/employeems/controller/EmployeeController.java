@@ -1,6 +1,9 @@
 package iqabiloglu.employeems.controller;
 
+import iqabiloglu.employeems.model.criteria.EmployeeCriteria;
+import iqabiloglu.employeems.model.criteria.PageCriteria;
 import iqabiloglu.employeems.model.dto.EmployeeDto;
+import iqabiloglu.employeems.model.dto.PageableEmployeeDto;
 import iqabiloglu.employeems.model.view.EmployeeView;
 import iqabiloglu.employeems.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +22,8 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<EmployeeView> getList() {
-        return service.getList();
+    public PageableEmployeeDto getList(PageCriteria pageCriteria, EmployeeCriteria criteria) {
+        return service.getList(pageCriteria, criteria);
     }
 
     @GetMapping("/position/{position_id}")
