@@ -1,6 +1,7 @@
 package iqabiloglu.employeems.dao.entity;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,46 +17,47 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employees")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "first_name")
-    private String firstName;
+    String firstName;
 
     @Column(name = "last_name")
-    private String lastName;
+    String lastName;
 
-    private String gender;
+    String gender;
 
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    LocalDate birthDate;
 
-    private String email;
+    String email;
 
     @Column(name = "phone_number")
-    private String phoneNumber;
+    String phoneNumber;
 
-    private String address;
+    String address;
 
-    private Double salary;
+    Double salary;
 
     @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    Boolean isDeleted;
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "id")
-    private PositionEntity position;
+    PositionEntity position;
 
     @Override
     public boolean equals(Object o) {
