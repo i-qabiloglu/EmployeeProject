@@ -2,12 +2,14 @@ package iqabiloglu.employeems.service.specification;
 
 
 import iqabiloglu.employeems.dao.entity.EmployeeEntity;
-import iqabiloglu.employeems.dao.entity.PositionEntity;
 import iqabiloglu.employeems.model.criteria.EmployeeCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -27,17 +29,22 @@ public class EmployeeSpecification implements Specification<EmployeeEntity> {
 
             if (criteria.getFullName() != null) {
 
-                predicates.add(criteriaBuilder.like(root.get("firstName"),
-                                                    "%" + criteria.getFullName().trim()
-                                                                  .toUpperCase(Locale.ROOT) + "%"));
+                var firstNamePred = criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("firstName")),
+                        "%" + criteria.getFullName().trim().toLowerCase(Locale.ROOT) + "%");
 
+                var lastNamePred = criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("lastName")),
+                        "%" + criteria.getFullName().trim().toLowerCase(Locale.ROOT) + "%");
+
+                predicates.add(
+                        criteriaBuilder.or(firstNamePred, criteriaBuilder.or(lastNamePred)));
             }
+
 
             if (criteria.getDepartmentId() != null) {
 
-                Join<EmployeeEntity, PositionEntity> employeePosition = root.join("position");
-
-                predicates.add(criteriaBuilder.equal(employeePosition.get("department"),
+                predicates.add(criteriaBuilder.equal(root.join("position").get("department"),
                                                      criteria.getDepartmentId()));
             }
 
@@ -49,10 +56,11 @@ public class EmployeeSpecification implements Specification<EmployeeEntity> {
             if (criteria.getGender() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("gender"), criteria.getGender()));
             }
+
         }
         predicates.add(criteriaBuilder.notEqual(root.get("isDeleted"), true));
 
-        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+        return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 
     }
 }
