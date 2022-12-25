@@ -12,8 +12,6 @@ public interface EmployeeService {
 
     PageableEmployeeDto getList(PageCriteria pageCriteria, EmployeeCriteria criteria);
 
-    List<EmployeeView> getListByPosition(Long positionId);
-
     EmployeeView get(Long id);
 
     void create(EmployeeDto dto);

@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeCriteria {
 
+    String fullName;
     Long departmentId;
     Long positionId;
     String gender;

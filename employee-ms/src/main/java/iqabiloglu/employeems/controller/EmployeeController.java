@@ -26,11 +26,6 @@ public class EmployeeController {
         return service.getList(pageCriteria, criteria);
     }
 
-    @GetMapping("/position/{position_id}")
-    public List<EmployeeView> getListByPosition(@PathVariable("position_id") Long positionId) {
-
-        return service.getListByPosition(positionId);
-    }
 
     @GetMapping("/{id}")
     public EmployeeView get(@PathVariable Long id) {
