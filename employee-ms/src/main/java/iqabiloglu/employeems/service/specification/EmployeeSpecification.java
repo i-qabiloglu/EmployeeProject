@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @RequiredArgsConstructor
 public class EmployeeSpecification implements Specification<EmployeeEntity> {
@@ -23,6 +24,14 @@ public class EmployeeSpecification implements Specification<EmployeeEntity> {
         List<Predicate> predicates = new ArrayList<>();
 
         if (criteria != null) {
+
+            if (criteria.getFullName() != null) {
+
+                predicates.add(criteriaBuilder.like(root.get("firstName"),
+                                                    "%" + criteria.getFullName().trim()
+                                                                  .toUpperCase(Locale.ROOT) + "%"));
+
+            }
 
             if (criteria.getDepartmentId() != null) {
 

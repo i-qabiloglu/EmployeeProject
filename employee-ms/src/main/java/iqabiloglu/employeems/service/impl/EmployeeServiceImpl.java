@@ -51,12 +51,6 @@ public class EmployeeServiceImpl implements EmployeeService {
                                   .hasNextPage(pageableEmployees.hasNext()).build();
     }
 
-    @Override
-    public List<EmployeeView> getListByPosition(Long positionId) {
-
-        return EmployeeMapper.INSTANCE.entitiesToViews(
-                repository.findAllByPosition_IdAndIsDeletedFalse(positionId));
-    }
 
     @Override
     public EmployeeView get(Long id) {
