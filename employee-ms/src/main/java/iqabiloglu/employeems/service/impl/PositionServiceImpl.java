@@ -100,7 +100,7 @@ public class PositionServiceImpl implements PositionService {
     PositionEntity fetchIfExist(Long id) {
         return repository.findByIdAndIsDeletedFalse(id).orElseThrow(() -> {
             log.error("PositionServiceImpl.fetchIfExist.error id: {}", id);
-            throw new NotFoundException(POSITION_NOT_FOUND_CODE, String.format(POSITION_NOT_FOUND_MESSAGE));
+            throw new NotFoundException(POSITION_NOT_FOUND_CODE, String.format(POSITION_NOT_FOUND_MESSAGE,id));
         });
     }
 
