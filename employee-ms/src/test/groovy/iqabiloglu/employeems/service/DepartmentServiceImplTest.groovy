@@ -4,6 +4,9 @@ import io.github.benas.randombeans.EnhancedRandomBuilder
 import iqabiloglu.employeems.dao.entity.DepartmentEntity
 import iqabiloglu.employeems.dao.repository.DepartmentRepository
 import iqabiloglu.employeems.dao.repository.PositionRepository
+import iqabiloglu.employeems.model.dto.DepartmentDto
+import iqabiloglu.employeems.model.exception.AlreadyExistException
+import iqabiloglu.employeems.model.exception.NotEmptyException
 import iqabiloglu.employeems.model.exception.NotFoundException
 import iqabiloglu.employeems.service.impl.DepartmentServiceImpl
 import spock.lang.Specification
@@ -85,18 +88,102 @@ class DepartmentServiceImplTest extends Specification {
 
     def "Create with success"() {
 
+        given:
+        def dto = random.nextObject(DepartmentDto)
+        def entity = random.nextObject(DepartmentEntity)
+        dto.name = "abc"
+        entity.name = "ab"
+
+        when:
+        service.create(dto)
+
+        then:
+        1 * departmentRepository.findAllByIsDeletedFalse() >> List.of(entity)
+        1 * departmentRepository.save(_)
+
+
     }
 
     def "Create with AlreadyExist error"() {
 
+        given:
+        def dto = random.nextObject(DepartmentDto)
+        def entity = random.nextObject(DepartmentEntity)
+        dto.name = "abc"
+        entity.name = "abc"
 
+        when:
+        service.create(dto)
+
+        then:
+        1 * departmentRepository.findAllByIsDeletedFalse() >> List.of(entity)
+
+        AlreadyExistException ex = thrown()
+        ex.code == "DEPARTMENT_ALREADY_EXIST"
+        ex.message == "Department with this name: abc already exist"
 
     }
 
-    def "Update"() {
+    def "Update with success"() {
+
+        given:
+        def id = 1L
+        def dto = Mock(DepartmentDto)
+        def entity = random.nextObject(DepartmentEntity)
+
+        when:
+        service.update(id, dto)
+
+        then:
+        1 * departmentRepository.findByIdAndIsDeletedFalse(id) >> Optional.of(entity)
+        1 * departmentRepository.save(_)
+
     }
 
-    def "Delete"() {
+    def "Update with error"() {
+        given:
+        def id = 1L
+        def dto = Mock(DepartmentDto)
+        def entity = random.nextObject(DepartmentEntity)
+
+        when:
+        service.update(id, dto)
+
+        then:
+        1 * departmentRepository.findByIdAndIsDeletedFalse(id) >> Optional.empty()
+        thrown(NotFoundException)
+    }
+
+    def "Delete with success"() {
+
+        given:
+        def id = 1L
+        def entity = random.nextObject(DepartmentEntity)
+
+        when:
+        service.delete(id)
+
+        then:
+        1 * departmentRepository.findByIdAndIsDeletedFalse(id) >> Optional.of(entity)
+        1 * positionRepository.findAllByIsDeletedFalseAndDepartment_Id(id) >> List.of()
+        1 * departmentRepository.save(_)
+
+    }
+
+    def "Delete with error"() {
+
+        given:
+        def id = 1L
+        def entity = random.nextObject(DepartmentEntity)
+
+        when:
+        service.delete(id)
+
+        then:
+        1 * departmentRepository.findByIdAndIsDeletedFalse(id) >> Optional.of(entity)
+        1 * positionRepository.findAllByIsDeletedFalseAndDepartment_Id(id) >> List.of(entity)
+        thrown(NotEmptyException)
+
     }
 
 
