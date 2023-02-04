@@ -16,6 +16,7 @@
 * MapStruct
 * Logging (Slf4j)
 * Pagination,Sorting and Filtering
+* Unit testing (Spock)
 * Swagger2 (http://localhost:8087/swagger-ui.html#)
 
 ---
