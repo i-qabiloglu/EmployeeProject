@@ -34,7 +34,7 @@ class DepartmentMapperTest extends Specification {
         result.isDeleted == false
     }
 
-    def "test entitiesToViews"() {
+    def "entitiesToViews"() {
         given:
         def entity = random.nextObject(DepartmentEntity)
 
