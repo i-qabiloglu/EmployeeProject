@@ -1,6 +1,7 @@
 package iqabiloglu.employeems.controller
 
 import iqabiloglu.employeems.model.dto.DepartmentDto
+import iqabiloglu.employeems.model.exception.AlreadyExistException
 import iqabiloglu.employeems.model.exception.NotFoundException
 import iqabiloglu.employeems.model.view.DepartmentView
 import iqabiloglu.employeems.service.DepartmentService
@@ -111,30 +112,10 @@ class DepartmentControllerTest extends Specification {
     }
 
     def "create - succes 201"() {
-
-
     }
 
     def "create - error 404"() {
 
-        given:
-        def view = DepartmentView.builder()
-                .id(1L)
-                .name("test")
-                .build()
-
-        def expectedResponse = '''{"id": 1,"name": "test"}'''
-
-        when:
-        def result = mockMvc.perform(get(endpoint + "1")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-
-        then:
-        1 * service.get(id) >> view
-        def response = result.response
-        response.getStatus() == 200
-        JSONAssert.assertEquals(expectedResponse, response.getContentAsString(), false)
     }
 
     def "delete - success 204"() {
