@@ -1,8 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.9'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id 'java'
-	id 'groovy'
+    id 'org.springframework.boot' version '2.5.9'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+    id 'groovy'
+    id 'war'
 }
 
 group = 'iqabiloglu'
@@ -10,48 +11,46 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
 
-	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.liquibase:liquibase-core:4.18.0'
-	compileOnly 'org.projectlombok:lombok:1.18.24'
-	runtimeOnly 'org.postgresql:postgresql:42.5.1'
-	annotationProcessor 'org.projectlombok:lombok:1.18.24'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.amqp:spring-rabbit-test:2.4.7'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.liquibase:liquibase-core:4.18.0'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    runtimeOnly 'org.postgresql:postgresql:42.5.1'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test:2.4.7'
 
-	// MapStruct
-	implementation 'org.mapstruct:mapstruct-jdk8:1.5.3.Final'
-	annotationProcessor 'org.mapstruct:mapstruct:1.5.3.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct-jdk8:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
-	//Swagger
-	implementation 'io.springfox:springfox-swagger2:2.9.2'
-	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    //Swagger
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
-	//Spock testing
-	testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
-	testImplementation 'org.apache.groovy:groovy-all:4.0.4'
+    //Spock testing
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.4'
 
-	implementation 'io.github.benas:random-beans:3.9.0'
-
-
+    implementation 'io.github.benas:random-beans:3.9.0'
 
 
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
